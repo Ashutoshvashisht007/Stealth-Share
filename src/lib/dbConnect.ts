@@ -13,8 +13,10 @@ async function dbConnect(): Promise<void> {
     }
 
     try {
-        const dbConnection = await mongoose.connect(process.env.MONGODB_URI || '');
-        console.log(dbConnection);
+        const dbConnection = await mongoose.connect(process.env.MONGODB_URI || '',{
+            dbName: "StealthShare"
+        });
+        // console.log(dbConnection);
 
         connection.isConnected = dbConnection.connections[0].readyState;
 
@@ -22,7 +24,7 @@ async function dbConnect(): Promise<void> {
         
         
     } catch (error) {
-        console.log("Database connection faild", error);
+        console.log("Database connection failed", error);
         process.exit(1);
     }
 }

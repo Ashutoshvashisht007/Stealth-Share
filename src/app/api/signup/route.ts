@@ -23,7 +23,7 @@ export async function POST(req: Request) {
             email
         });
 
-        const verifyCode = Math.floor(100000 + Math.random() * 900000).toString();
+        let verifyCode = Math.floor(100000 + Math.random() * 900000).toString();
 
         if (existingUserByEmail) {
             if(existingUserByEmail.isVerified){
@@ -67,6 +67,8 @@ export async function POST(req: Request) {
         if (!emailResponse.success) {
             return responseFunction(emailResponse.message,false,500);
         }
+
+        console.log(emailResponse.success);
 
         return responseFunction("User Registered Successfully, Please Verify your email",true, 201);
 

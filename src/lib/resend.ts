@@ -14,7 +14,7 @@ export async function sendVerificationEmail(
         await resend.emails.send({
             from: "onboarding@resend.dev",
             to: email,
-            subject: "Stealth Share |||| Verification code",
+            subject: "Stealth Share || Verification code",
             react: VerificationEmail({username,otp: verifycode})
         })
 
